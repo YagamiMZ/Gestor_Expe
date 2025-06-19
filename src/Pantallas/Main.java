@@ -37,6 +37,11 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnRegistrarExpediente.setText("Registrar Expediente");
+        btnRegistrarExpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarExpedienteActionPerformed(evt);
+            }
+        });
 
         btnAtenderExpediente.setText("Atender Expediente");
 
@@ -118,6 +123,14 @@ public class Main extends javax.swing.JFrame {
     private void btnFinalizarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarExpedienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFinalizarExpedienteActionPerformed
+
+    private void btnRegistrarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarExpedienteActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        
+    }//GEN-LAST:event_btnRegistrarExpedienteActionPerformed
 
     /**
      * @param args the command line arguments
