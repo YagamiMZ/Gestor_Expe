@@ -3,7 +3,7 @@ package Controlador;
 import TDAs.*;
 import Modelo.*;
 import TDAdoblelist.*;
-
+//777
 public class controlador {
     
     private static ListaDobleEnlazada<Expediente> Todo_Expedientes = new ListaDobleEnlazada<>();
