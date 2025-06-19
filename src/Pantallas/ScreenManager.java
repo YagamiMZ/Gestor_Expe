@@ -20,7 +20,17 @@ public class ScreenManager {
     
     public static void goBack(JFrame currentScreen) {
         currentScreen.dispose();
+
         stack.pop().setVisible(true);
+        
+    }
+    
+    
+    public static void goBackTwice(JFrame currentScreen) {
+        currentScreen.dispose();
+        JFrame aux = stack.pop();
+        stack.pop().setVisible(true);
+        
     }
     
     

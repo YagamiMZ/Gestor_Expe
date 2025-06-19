@@ -15,13 +15,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        modeloTabla = new DefaultTableModel();
-        modeloTabla.addColumn("ID");
-        modeloTabla.addColumn("Fecha");
-        modeloTabla.addColumn("Prioridad");
-        modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Asunto");
-        this.tbTablaPendientes.setModel(modeloTabla);
+
     }
 
     /**
@@ -38,8 +32,7 @@ public class Main extends javax.swing.JFrame {
         btnAtenderExpediente = new javax.swing.JButton();
         btnConsultarExpediente = new javax.swing.JButton();
         btnFinalizarExpediente = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbTablaPendientes = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,50 +54,41 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Crear Dependencia");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGap(99, 99, 99)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAtenderExpediente)
-                        .addGap(78, 78, 78)
-                        .addComponent(btnFinalizarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnRegistrarExpediente)
-                        .addGap(73, 73, 73)
-                        .addComponent(btnConsultarExpediente)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRegistrarExpediente)
+                            .addComponent(btnFinalizarExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAtenderExpediente)
+                            .addComponent(btnConsultarExpediente))
+                        .addGap(286, 345, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarExpediente)
-                    .addComponent(btnConsultarExpediente))
+                .addContainerGap(76, Short.MAX_VALUE)
+                .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFinalizarExpediente)
-                    .addComponent(btnAtenderExpediente))
-                .addGap(40, 40, 40))
+                .addComponent(btnRegistrarExpediente)
+                .addGap(17, 17, 17)
+                .addComponent(btnConsultarExpediente)
+                .addGap(30, 30, 30)
+                .addComponent(btnFinalizarExpediente)
+                .addGap(34, 34, 34)
+                .addComponent(btnAtenderExpediente)
+                .addGap(47, 47, 47))
         );
-
-        tbTablaPendientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tbTablaPendientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,19 +98,13 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addGap(221, 221, 221))
         );
 
         pack();
@@ -180,8 +158,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultarExpediente;
     private javax.swing.JButton btnFinalizarExpediente;
     private javax.swing.JButton btnRegistrarExpediente;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbTablaPendientes;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,6 +16,7 @@ public class Expediente {
     private String fhInicio;
     private String fhFinal;
     private ListaSimpleEnlazada<Tramite> documentoProducto;
+    private ListaSimpleEnlazada<String> documentos;
 
     public Expediente(int identificador, boolean prioridad, String asunto, Interesado_Persona datos, String documentoReferencia, boolean estado, String fhInicio, String fhFinal, ListaSimpleEnlazada<Tramite> documentoProducto) {
         this.identificador = identificador;
