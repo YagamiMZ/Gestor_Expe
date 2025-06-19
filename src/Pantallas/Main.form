@@ -98,6 +98,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Atender Expediente"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtenderExpedienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnConsultarExpediente">
           <Properties>
@@ -119,6 +122,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear Dependencia"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

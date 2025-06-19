@@ -3,13 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Pantallas;
+
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USUARIO
  */
 public class Main extends javax.swing.JFrame {
+
     private DefaultTableModel modeloTabla;
+
     /**
      * Creates new form Main
      */
@@ -44,6 +48,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         btnAtenderExpediente.setText("Atender Expediente");
+        btnAtenderExpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtenderExpedienteActionPerformed(evt);
+            }
+        });
 
         btnConsultarExpediente.setText("Consultar Expediente");
         btnConsultarExpediente.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +69,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton1.setText("Crear Dependencia");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,7 +131,9 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarExpedienteActionPerformed
-        // TODO add your handling code here:
+        Consultar_Expediente consulEx = new Consultar_Expediente();
+        ScreenManager.openNewScreen(this, consulEx);
+
     }//GEN-LAST:event_btnConsultarExpedienteActionPerformed
 
     private void btnFinalizarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarExpedienteActionPerformed
@@ -125,12 +141,28 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarExpedienteActionPerformed
 
     private void btnRegistrarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarExpedienteActionPerformed
+
         // TODO add your handling code here:
-        
-        
-        
-        
+        Registrar_Expediente registrarEx = new Registrar_Expediente();
+        ScreenManager.openNewScreen(this, registrarEx);
+
+        {
+    }                                                      
+
+
     }//GEN-LAST:event_btnRegistrarExpedienteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CrearDependencia crearDe = new CrearDependencia();
+        ScreenManager.openNewScreen(this, crearDe);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAtenderExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderExpedienteActionPerformed
+        Atender_Expediente atenderEx = new Atender_Expediente();
+        ScreenManager.openNewScreen(this, atenderEx);
+
+    }//GEN-LAST:event_btnAtenderExpedienteActionPerformed
 
     /**
      * @param args the command line arguments

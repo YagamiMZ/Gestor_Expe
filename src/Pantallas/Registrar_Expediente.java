@@ -12,10 +12,18 @@ public class Registrar_Expediente extends javax.swing.JFrame {
     /**
      * Creates new form Registrar_Expediente
      */
-    private static int id;
+    
+
     public Registrar_Expediente() {
         initComponents();
-        id=0;
+        for (int i = 1; i <= controlador.getLista_Dependencia().longitud(); i++) {
+            System.out.println("---");
+            Dependencia aux = controlador.getLista_Dependencia().iesimo(i);
+            System.out.println("---");
+            String dependencia = aux.getNombre();
+            Cbdependencia.addItem(dependencia);
+
+        }
     }
 
     /**
@@ -120,7 +128,6 @@ public class Registrar_Expediente extends javax.swing.JFrame {
             }
         });
 
-        Cbdependencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dependencia1", "Item 2", "Item 3", "Item 4" }));
         Cbdependencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CbdependenciaActionPerformed(evt);
@@ -130,6 +137,11 @@ public class Registrar_Expediente extends javax.swing.JFrame {
         jLabel10.setText("Dependencia: ");
 
         jButton1.setText("Atras");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         chbxProcedencia.setText("Procedencia");
 
@@ -294,23 +306,37 @@ public class Registrar_Expediente extends javax.swing.JFrame {
         String Documento = txtDocumento.getText();
         boolean prioridad = chbxPrioridad.isSelected();
         boolean procedencia = chbxProcedencia.isSelected();
-        int identificador = id++;
+        int id =0;
+        if (controlador.getTodo_Expedientes().esVacia()) {
+            id = 1;
+            
+        }else{
+            id = controlador.getTodo_Expedientes().getUltimo().getItem().getIdentificador()+1;
+        }
+
         //Contructor persona : String DNI, String nombre, String telefono, String email, boolean procedencia
         Interesado_Persona persona = new Interesado_Persona(DNI,nombre,telefono,email,procedencia);
         //int identificador, boolean prioridad, String asunto, Interesado_Persona datos, String documentoReferencia, String fhInicio
         LocalDate fechaActual = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String fechainicio = fechaActual.format(formato); //YA ESTA EN STRING 
-        Expediente expediente = new Expediente(identificador,prioridad,asunto,persona,Documento,fechainicio);
+        Expediente expediente = new Expediente(id,prioridad,asunto,persona,Documento,fechainicio);
         int DependenciaInicial = Cbdependencia.getSelectedIndex();//Devuelve el indice del comboBox
-        controlador.Registrar_enDependencia(expediente, id);
-        
+   
+        controlador.Registrar_enDependencia(expediente, DependenciaInicial);
+
+        System.out.println(expediente.getIdentificador());
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void CbdependenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbdependenciaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CbdependenciaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ScreenManager.goBack(this);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,11 +5,14 @@ import Modelo.*;
 import TDAdoblelist.*;
 //ESTO HACE TAL COSA
 public class controlador {
-    
+
     private static ListaDobleEnlazada<Expediente> Todo_Expedientes = new ListaDobleEnlazada<>();
     //private static ListaCircularSimple<Expediente> Alertas = new ListaCircularSimple<>();
     private static ListaDobleEnlazada<Expediente> Expedientes_Finalizados = new ListaDobleEnlazada<>();
     private static ListaSimpleEnlazada<Dependencia> lista_Dependencia = new ListaSimpleEnlazada<>();
+    
+    
+    
     
    /*
     CREAR DEPENDENCIA
@@ -26,6 +29,7 @@ public class controlador {
     public static boolean Registrar_enDependencia(Expediente exp,int indice){   
         boolean creado = false;
         lista_Dependencia.iesimo(indice).getCola().encolar(exp);
+        Todo_Expedientes.agregar(exp);
         
         
         return creado;

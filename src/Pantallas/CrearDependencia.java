@@ -135,7 +135,8 @@ public class CrearDependencia extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nombre = txtNombreDependencia.getText();
         Dependencia dependencia = new Dependencia(nombre);
-        controlador.CrearDependencia(dependencia);        
+        controlador.CrearDependencia(dependencia);      
+
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
