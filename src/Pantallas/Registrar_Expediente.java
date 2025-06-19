@@ -1,13 +1,21 @@
 package Pantallas;
 import Modelo.*;
 import Controlador.*;
+//Importar para fechas
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+
+
 public class Registrar_Expediente extends javax.swing.JFrame {
 
     /**
      * Creates new form Registrar_Expediente
      */
+    private static int id;
     public Registrar_Expediente() {
         initComponents();
+        id=0;
     }
 
     /**
@@ -41,6 +49,7 @@ public class Registrar_Expediente extends javax.swing.JFrame {
         Cbdependencia = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        chbxProcedencia = new javax.swing.JCheckBox();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -122,6 +131,8 @@ public class Registrar_Expediente extends javax.swing.JFrame {
 
         jButton1.setText("Atras");
 
+        chbxProcedencia.setText("Procedencia");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -160,19 +171,24 @@ public class Registrar_Expediente extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chbxPrioridad)
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnRegistrar)
                                 .addComponent(txtAsunto, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtDocumento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                .addComponent(Cbdependencia, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(Cbdependencia, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnRegistrar)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(chbxProcedencia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chbxPrioridad)
+                .addGap(10, 10, 10))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,17 +225,19 @@ public class Registrar_Expediente extends javax.swing.JFrame {
                     .addComponent(Cbdependencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(2, 2, 2)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(4, 4, 4)
-                .addComponent(chbxPrioridad)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(44, 44, 44)
                         .addComponent(jLabel7)
-                        .addContainerGap(30, Short.MAX_VALUE))
+                        .addContainerGap(113, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(chbxProcedencia)
+                            .addComponent(chbxPrioridad))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRegistrar)
@@ -274,6 +292,19 @@ public class Registrar_Expediente extends javax.swing.JFrame {
         String telefono = txtTelefono.getText();
         String asunto = txtAsunto.getText();
         String Documento = txtDocumento.getText();
+        boolean prioridad = chbxPrioridad.isSelected();
+        boolean procedencia = chbxProcedencia.isSelected();
+        int identificador = id++;
+        //Contructor persona : String DNI, String nombre, String telefono, String email, boolean procedencia
+        Interesado_Persona persona = new Interesado_Persona(DNI,nombre,telefono,email,procedencia);
+        //int identificador, boolean prioridad, String asunto, Interesado_Persona datos, String documentoReferencia, String fhInicio
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechainicio = fechaActual.format(formato); //YA ESTA EN STRING 
+        Expediente expediente = new Expediente(identificador,prioridad,asunto,persona,Documento,fechainicio);
+        int DependenciaInicial = Cbdependencia.getSelectedIndex();//Devuelve el indice del comboBox
+        controlador.Registrar_enDependencia(expediente, id);
+        
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -320,6 +351,7 @@ public class Registrar_Expediente extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Cbdependencia;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JCheckBox chbxPrioridad;
+    private javax.swing.JCheckBox chbxProcedencia;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

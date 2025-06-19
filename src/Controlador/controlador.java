@@ -11,7 +11,17 @@ public class controlador {
     private static ListaDobleEnlazada<Expediente> Expedientes_Finalizados = new ListaDobleEnlazada<>();
     private static ListaSimpleEnlazada<Dependencia> lista_Dependencia = new ListaSimpleEnlazada<>();
     
-   
+   /*
+    CREAR DEPENDENCIA
+    */
+    
+    public static void CrearDependencia(Dependencia d){
+    
+        lista_Dependencia.agregar(d);
+    
+    }
+    
+    
     
     public static boolean Registrar_enDependencia(Expediente exp,int indice){   
         boolean creado = false;

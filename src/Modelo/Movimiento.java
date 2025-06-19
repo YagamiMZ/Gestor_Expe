@@ -4,10 +4,7 @@
  */
 package Modelo;
 
-/**
- *
- * @author LENOVO
- */
+
 public class Movimiento {
     private String depOrigen;
     private String depDestino;
