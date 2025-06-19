@@ -306,7 +306,7 @@ public class Registrar_Expediente extends javax.swing.JFrame {
         String Documento = txtDocumento.getText();
         boolean prioridad = chbxPrioridad.isSelected();
         boolean procedencia = chbxProcedencia.isSelected();
-        int id =0;
+        int id;
         if (controlador.getTodo_Expedientes().esVacia()) {
             id = 1;
             

@@ -28,7 +28,7 @@ public class controlador {
     
     public static boolean Registrar_enDependencia(Expediente exp,int indice){   
         boolean creado = false;
-        lista_Dependencia.iesimo(indice).getCola().encolar(exp);
+        lista_Dependencia.iesimo(indice+1).getCola().encolar(exp);
         Todo_Expedientes.agregar(exp);
         
         
