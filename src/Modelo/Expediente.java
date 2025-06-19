@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 import TDAs.*;
 
@@ -15,19 +11,20 @@ public class Expediente {
     private boolean estado;
     private String fhInicio;
     private String fhFinal;
-    private ListaSimpleEnlazada<Tramite> documentoProducto;
+    private ListaSimpleEnlazada<Movimiento> movimientos;
     private ListaSimpleEnlazada<String> documentos;
 
-    public Expediente(int identificador, boolean prioridad, String asunto, Interesado_Persona datos, String documentoReferencia, boolean estado, String fhInicio, String fhFinal, ListaSimpleEnlazada<Tramite> documentoProducto) {
+    public Expediente(int identificador, boolean prioridad, String asunto, Interesado_Persona datos, String documentoReferencia, String fhInicio) {
         this.identificador = identificador;
         this.prioridad = prioridad;
         this.asunto = asunto;
         this.datos = datos;
         this.documentoReferencia = documentoReferencia;
-        this.estado = estado;
+        this.estado = false;
         this.fhInicio = fhInicio;
-        this.fhFinal = null;
-        this.documentoProducto = documentoProducto;
+        this.fhFinal = "\000";
+        this.movimientos = new ListaSimpleEnlazada<>();
+        this.documentos = new ListaSimpleEnlazada<>();
     }
 
     public int getIdentificador() {
@@ -70,7 +67,7 @@ public class Expediente {
         this.documentoReferencia = documentoReferencia;
     }
 
-    public boolean getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
@@ -94,13 +91,24 @@ public class Expediente {
         this.fhFinal = fhFinal;
     }
 
-    public ListaSimpleEnlazada<Tramite> getDocumentoProducto() {
-        return documentoProducto;
+    public ListaSimpleEnlazada<Movimiento> getMovimientos() {
+        return movimientos;
     }
 
-    public void setDocumentoProducto(ListaSimpleEnlazada<Tramite> documentoProducto) {
-        this.documentoProducto = documentoProducto;
+    public void setMovimientos(ListaSimpleEnlazada<Movimiento> movimientos) {
+        this.movimientos = movimientos;
     }
-    
+
+    public ListaSimpleEnlazada<String> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(ListaSimpleEnlazada<String> documentos) {
+        this.documentos = documentos;
+    }
+
+
+
+
     
 }

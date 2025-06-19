@@ -1,21 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
-import javax.swing.JTextField;
-
-/**
- *
- * @author LENOVO
- */
 public class Interesado_Persona {
     private String DNI;
     private String nombre; 
     private String telefono;
     private String email;
-    private boolean procedencia;
+    private boolean procedencia;//True si pertenece a la U False si esq no
 
     public Interesado_Persona(String DNI, String nombre, String telefono, String email, boolean procedencia) {
         this.DNI = DNI;
