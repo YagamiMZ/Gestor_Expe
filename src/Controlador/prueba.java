@@ -4,10 +4,7 @@
  */
 package Controlador;
 
-/**
- *
- * @author LENOVO
- */
+
 public class prueba {
     
 }
