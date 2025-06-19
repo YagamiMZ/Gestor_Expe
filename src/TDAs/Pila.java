@@ -4,8 +4,6 @@
  */
 package TDAs;
 
-import Vista.*;
-
 /**
  *
  * @author migue
