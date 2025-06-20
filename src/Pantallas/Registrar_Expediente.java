@@ -1,19 +1,16 @@
 package Pantallas;
+
 import Modelo.*;
 import Controlador.*;
 //Importar para fechas
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
-
 public class Registrar_Expediente extends javax.swing.JFrame {
 
     /**
      * Creates new form Registrar_Expediente
      */
-    
-
     public Registrar_Expediente() {
         initComponents();
         for (int i = 1; i <= controlador.getLista_Dependencia().longitud(); i++) {
@@ -104,6 +101,12 @@ public class Registrar_Expediente extends javax.swing.JFrame {
             }
         });
 
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDNIKeyTyped(evt);
+            }
+        });
+
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -113,6 +116,11 @@ public class Registrar_Expediente extends javax.swing.JFrame {
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
+            }
+        });
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
             }
         });
 
@@ -143,7 +151,7 @@ public class Registrar_Expediente extends javax.swing.JFrame {
             }
         });
 
-        chbxProcedencia.setText("Procedencia");
+        chbxProcedencia.setText("Miembro Ulima");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -198,9 +206,9 @@ public class Registrar_Expediente extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(chbxProcedencia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(chbxPrioridad)
-                .addGap(10, 10, 10))
+                .addGap(53, 53, 53))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +305,10 @@ public class Registrar_Expediente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDocumentoActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+
+        /*
+        ESTRAEMOS LOS DATOS INGRESADOS
+         */
         String nombre = txtNombre.getText();
         String DNI = txtDNI.getText();
         String email = txtEmail.getText();
@@ -306,27 +317,45 @@ public class Registrar_Expediente extends javax.swing.JFrame {
         String Documento = txtDocumento.getText();
         boolean prioridad = chbxPrioridad.isSelected();
         boolean procedencia = chbxProcedencia.isSelected();
+        /*
+        CREAMOS EL ID UNICO
+         */
         int id;
         if (controlador.getTodo_Expedientes().esVacia()) {
             id = 1;
-            
-        }else{
-            id = controlador.getTodo_Expedientes().getUltimo().getItem().getIdentificador()+1;
+
+        } else {
+            id = controlador.getTodo_Expedientes().getUltimo().getItem().getIdentificador() + 1;
         }
 
         //Contructor persona : String DNI, String nombre, String telefono, String email, boolean procedencia
-        Interesado_Persona persona = new Interesado_Persona(DNI,nombre,telefono,email,procedencia);
+        Interesado_Persona persona = new Interesado_Persona(DNI, nombre, telefono, email, procedencia);
         //int identificador, boolean prioridad, String asunto, Interesado_Persona datos, String documentoReferencia, String fhInicio
         LocalDate fechaActual = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String fechainicio = fechaActual.format(formato); //YA ESTA EN STRING 
-        Expediente expediente = new Expediente(id,prioridad,asunto,persona,Documento,fechainicio);
+        String fechainicio = fechaActual.format(formato); //YA ESTA EN STRING LA FECHA
+        /*
+        Se crea el Expediente
+         */
+        Expediente expediente = new Expediente(id, prioridad, asunto, persona, Documento, fechainicio);
         int DependenciaInicial = Cbdependencia.getSelectedIndex();//Devuelve el indice del comboBox
-   
+        //SE COLOCA EN LA COLA DE LA DEPENDENCIA QUE LE CORRESPONDE
         controlador.Registrar_enDependencia(expediente, DependenciaInicial);
 
         System.out.println(expediente.getIdentificador());
-        
+        /*
+        Limpiar las casillas
+         */
+
+        this.txtDNI.setText("");
+        this.txtAsunto.setText("");
+        this.txtDocumento.setText("");
+        this.txtEmail.setText("");
+        this.txtTelefono.setText("");
+        this.txtNombre.setText("");
+        this.chbxPrioridad.setSelected(false);
+        this.chbxProcedencia.setSelected(false);
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void CbdependenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbdependenciaActionPerformed
@@ -337,6 +366,22 @@ public class Registrar_Expediente extends javax.swing.JFrame {
         // TODO add your handling code here:
         ScreenManager.goBack(this);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    /*
+    Validacion de casillaDNI mientras se escribe sobre ella
+     */
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+
+        // se comprueba que sea un digito o que no se haya pasado los 9 digitos ingresados
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || txtDNI.getText().length() >= 9) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDNIKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     /**
      * @param args the command line arguments

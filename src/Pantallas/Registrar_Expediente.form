@@ -127,9 +127,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="chbxProcedencia" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="chbxPrioridad" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -272,6 +272,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDNI">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDNIKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombre">
         </Component>
@@ -283,6 +286,7 @@
         <Component class="javax.swing.JTextField" name="txtTelefono">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTelefonoActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelefonoKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDocumento">
@@ -323,7 +327,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="chbxProcedencia">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Procedencia"/>
+            <Property name="text" type="java.lang.String" value="Miembro Ulima"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -35,8 +35,11 @@ public class CrearDependencia extends javax.swing.JFrame {
         btnCrear = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        LabelError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        PanelF.setForeground(new java.awt.Color(255, 0, 51));
 
         jLabel1.setText("CREAR DEPENDENCIA");
 
@@ -69,6 +72,9 @@ public class CrearDependencia extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        LabelError.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        LabelError.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout PanelFLayout = new javax.swing.GroupLayout(PanelF);
         PanelF.setLayout(PanelFLayout);
         PanelFLayout.setHorizontalGroup(
@@ -87,7 +93,10 @@ public class CrearDependencia extends javax.swing.JFrame {
                                 .addComponent(btnRegresar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(LabelError, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -96,7 +105,9 @@ public class CrearDependencia extends javax.swing.JFrame {
             .addGroup(PanelFLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(57, 57, 57)
+                .addGap(9, 9, 9)
+                .addComponent(LabelError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(txtNombreDependencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -123,7 +134,7 @@ public class CrearDependencia extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanelF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 131, Short.MAX_VALUE))
+                .addGap(0, 147, Short.MAX_VALUE))
         );
 
         pack();
@@ -132,18 +143,27 @@ public class CrearDependencia extends javax.swing.JFrame {
     
     //CREAR
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
-        String nombre = txtNombreDependencia.getText();
+
+        //SI NO PUSO NADA NO SE CREA LA DEPENDENCIA
+        if (this.txtNombreDependencia.getText().isEmpty()) {
+            
+            this.LabelError.setText("Ingrese un Nombre");
+            return;
+        }
+        String nombre = txtNombreDependencia.getText();//Extraemos el texto
+        
+        //CREAMOS LA DEPENDENCIA
         Dependencia dependencia = new Dependencia(nombre);
-        controlador.CrearDependencia(dependencia);      
+        //LA AGREGAMOS A LA LISTA DE DEPENDENCIAS
+        controlador.CrearDependencia(dependencia);
+        //LIMPIAMOS LA CASIILA
+        this.txtNombreDependencia.setText("");
 
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        Main main = new Main();
-        ScreenManager.openNewScreen(this, main);
-        controlador.getLista_Dependencia().mostrar();
+        ScreenManager.goBack(this);
         
     }//GEN-LAST:event_btnRegresarActionPerformed
 
@@ -183,6 +203,7 @@ public class CrearDependencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelError;
     private javax.swing.JPanel PanelF;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnRegresar;

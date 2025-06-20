@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Pantallas;
 
+import Controlador.controlador;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author USUARIO
- */
 public class Main extends javax.swing.JFrame {
 
     private DefaultTableModel modeloTabla;
@@ -142,12 +136,25 @@ public class Main extends javax.swing.JFrame {
 
     private void btnRegistrarExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarExpedienteActionPerformed
 
-        // TODO add your handling code here:
-        Registrar_Expediente registrarEx = new Registrar_Expediente();
-        ScreenManager.openNewScreen(this, registrarEx);
+        /*
+        VERIFICAR QUE EXISTAN DEPENDENCIAS PRIMERO
+         */
+        if (controlador.getLista_Dependencia().esVacia()) {
 
-        {
-    }                                                      
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No hay dependencias registradas.\nPor favor, agregue al menos una antes de continuar.",
+                    "Faltan dependencias",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+
+        } else {
+
+            Registrar_Expediente registrarEx = new Registrar_Expediente();
+            ScreenManager.openNewScreen(this, registrarEx);
+
+        }
 
 
     }//GEN-LAST:event_btnRegistrarExpedienteActionPerformed
